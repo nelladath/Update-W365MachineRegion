@@ -4,6 +4,7 @@
 #Author : Sujin Nelladath
 #LinkedIn : https://www.linkedin.com/in/sujin-nelladath-8911968a/
 
+
 ##########################################################################
 
 Connect-MgGraph -Scopes "CloudPC.ReadWrite.All", "DeviceManagementConfiguration.ReadWrite.All" -NoWelcome
@@ -23,7 +24,8 @@ $cloudPCUri = "https://graph.microsoft.com/v1.0/deviceManagement/virtualEndpoint
 try {
     $cloudPC = Invoke-MgGraphRequest -Uri $cloudPCUri
     
-    if ($cloudPC.value.Count -eq 0) {
+    if ($cloudPC.value.Count -eq 0) 
+    {
         Write-Host "Cloud PC not found!" -ForegroundColor Red
         exit
     }
@@ -31,7 +33,10 @@ try {
     $policyId = $cloudPC.value[0].provisioningPolicyId
     Write-Host "Found Policy ID: $policyId"
     
-} catch {
+} 
+
+catch 
+{
     Write-Host "Error finding Cloud PC: $($_.Exception.Message)" -ForegroundColor Red
     exit
 }
@@ -52,10 +57,15 @@ $body = @{
 
 Write-Host "Updating region to: $RegionName ($RegionGroup)"
 
-try {
+try 
+{
     Invoke-MgGraphRequest -Uri $updateUri -Method PATCH -Body $body
     Write-Host "Region updated successfully!" -ForegroundColor Green
     
-} catch {
+} 
+
+catch
+
+{
     Write-Host "Error updating region: $($_.Exception.Message)" -ForegroundColor Red
 }
