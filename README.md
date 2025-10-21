@@ -1,4 +1,4 @@
-#The PowerShell script will change the Region Name and Geography of Microsoft 365 Cloud PCs using Microsoft Graph API
+# The PowerShell script will change the Region Name and Geography of Microsoft 365 Cloud PCs using Microsoft Graph API
 
 ## Prerequisites
 Install the MS Graph PowerShell Module
